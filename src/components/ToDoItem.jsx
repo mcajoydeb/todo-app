@@ -5,17 +5,51 @@ function ToDoItem({ todo, deleteTodo, toggleComplete, editTodo }) {
   const [newText, setNewText] = useState(todo.text);
 
   return (
-    <div className="flex justify-between items-center bg-gray-100 p-2 rounded">
+    <div className="flex items-center justify-between bg-gray-50 p-3 rounded-lg shadow-sm">
       
-      {isEditing ? (
-        <>
+      {/* LEFT SIDE */}
+      <div className="flex items-center gap-3 flex-1">
+        
+        {/* ✅ Checkbox */}
+        <input
+          type="checkbox"
+          checked={todo.completed}
+          onChange={() => toggleComplete(todo.id)}
+          className="w-5 h-5 cursor-pointer"
+        />
+
+        {/* ✅ Text */}
+        {isEditing ? (
           <input
-            className="flex-1 border p-1 rounded"
+            className="border p-1 rounded w-full"
             value={newText}
             onChange={(e) => setNewText(e.target.value)}
           />
+        ) : (
+          <span
+            className={`text-lg ${
+              todo.completed
+                ? "line-through text-gray-400"
+                : "text-gray-700"
+            }`}
+          >
+            {todo.text}
+          </span>
+        )}
+
+        {/* ✅ Completed Label */}
+        {todo.completed && (
+          <span className="text-green-500 text-sm font-semibold">
+            ✔ Completed
+          </span>
+        )}
+      </div>
+
+      {/* RIGHT SIDE BUTTONS */}
+      <div className="flex gap-2 ml-3">
+        {isEditing ? (
           <button
-            className="ml-2 bg-green-500 text-white px-2 rounded"
+            className="bg-green-500 text-white px-3 py-1 rounded"
             onClick={() => {
               editTodo(todo.id, newText);
               setIsEditing(false);
@@ -23,34 +57,24 @@ function ToDoItem({ todo, deleteTodo, toggleComplete, editTodo }) {
           >
             Save
           </button>
-        </>
-      ) : (
-        <>
-          <span
-            onClick={() => toggleComplete(todo.id)}
-            className={`flex-1 cursor-pointer ${
-              todo.completed ? "line-through text-gray-400" : ""
-            }`}
-          >
-            {todo.text}
-          </span>
-
-          <div className="flex gap-2">
+        ) : (
+          <>
             <button
               onClick={() => setIsEditing(true)}
-              className="bg-yellow-400 px-2 rounded"
+              className="bg-yellow-400 px-3 py-1 rounded"
             >
-              Edit
+              ✏️
             </button>
+
             <button
               onClick={() => deleteTodo(todo.id)}
-              className="bg-red-500 text-white px-2 rounded"
+              className="bg-red-500 text-white px-3 py-1 rounded"
             >
-              Delete
+              🗑️
             </button>
-          </div>
-        </>
-      )}
+          </>
+        )}
+      </div>
     </div>
   );
 }

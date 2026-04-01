@@ -11,33 +11,39 @@ function ToDoList({ todos, addTodo, deleteTodo, toggleComplete, editTodo }) {
   };
 
   return (
-    <div className="max-w-xl mx-auto mt-6 p-4 bg-white shadow-lg rounded-lg">
+    <div className="max-w-2xl mx-auto mt-10 bg-white p-6 rounded-2xl shadow-xl">
       
-      <div className="flex gap-2">
+      {/* Input Section */}
+      <div className="flex gap-3">
         <input
-          className="flex-1 border p-2 rounded"
+          className="flex-1 border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400"
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          placeholder="Enter task..."
+          placeholder="Add a new task..."
         />
         <button
           onClick={handleAdd}
-          className="bg-blue-500 text-white px-4 rounded hover:bg-blue-600"
+          className="bg-indigo-500 text-white px-5 py-2 rounded-lg hover:bg-indigo-600 transition"
         >
           Add
         </button>
       </div>
 
-      <div className="mt-4 space-y-2">
-        {todos.map(todo => (
-          <ToDoItem
-            key={todo.id}
-            todo={todo}
-            deleteTodo={deleteTodo}
-            toggleComplete={toggleComplete}
-            editTodo={editTodo}
-          />
-        ))}
+      {/* List */}
+      <div className="mt-6 space-y-3">
+        {todos.length === 0 ? (
+          <p className="text-center text-gray-400">No tasks yet 😴</p>
+        ) : (
+          todos.map(todo => (
+            <ToDoItem
+              key={todo.id}
+              todo={todo}
+              deleteTodo={deleteTodo}
+              toggleComplete={toggleComplete}
+              editTodo={editTodo}
+            />
+          ))
+        )}
       </div>
 
     </div>
