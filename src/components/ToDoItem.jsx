@@ -10,7 +10,7 @@ function ToDoItem({ todo, deleteTodo, toggleComplete, editTodo }) {
       {/* LEFT SIDE */}
       <div className="flex items-center gap-3 flex-1">
         
-        {/* ✅ Checkbox */}
+        {/* Checkbox */}
         <input
           type="checkbox"
           checked={todo.completed}
@@ -18,7 +18,7 @@ function ToDoItem({ todo, deleteTodo, toggleComplete, editTodo }) {
           className="w-5 h-5 cursor-pointer"
         />
 
-        {/* ✅ Text */}
+        {/* Text */}
         {isEditing ? (
           <input
             className="border p-1 rounded w-full"
@@ -37,7 +37,7 @@ function ToDoItem({ todo, deleteTodo, toggleComplete, editTodo }) {
           </span>
         )}
 
-        {/* ✅ Completed Label */}
+        {/* Completed Label */}
         {todo.completed && (
           <span className="text-green-500 text-sm font-semibold">
             ✔ Completed
