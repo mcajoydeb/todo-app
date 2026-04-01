@@ -1,11 +1,11 @@
 function Footer() {
   return (
-    <footer style={styles.footer}>
-      <p>© {new Date().getFullYear()} To-Do App | All Rights Reserved</p>
+    <footer className="bg-gray-900 text-gray-300 text-center py-4 mt-10">
+      <p className="text-sm">
+        © {new Date().getFullYear()} My To-Do App | Built by Joydeb Choudhury
+      </p>
     </footer>
   );
 }
-
-
 
 export default Footer;

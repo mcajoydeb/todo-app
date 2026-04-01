@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Header from "./components/Header";
 import ToDoList from "./components/ToDoList";
+import Footer from "./components/Footer";
 
 function App() {
   const [todos, setTodos] = useState([]);
@@ -39,6 +40,7 @@ function App() {
         toggleComplete={toggleComplete}
         editTodo={editTodo}
       />
+      <Footer />
     </>
   );
 }
